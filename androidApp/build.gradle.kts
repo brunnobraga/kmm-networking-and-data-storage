@@ -12,6 +12,9 @@ repositories {
     jcenter()
     mavenCentral()
 }
+
+val kodeinDBVersion = "0.5.0-beta"
+
 dependencies {
     implementation(project(":shared"))
     implementation("com.google.android.material:material:1.2.0")
@@ -23,6 +26,8 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.1.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("androidx.cardview:cardview:1.0.0")
+    debugImplementation("org.kodein.db:kodein-db-android-debug:$kodeinDBVersion")
+    releaseImplementation("org.kodein.db:kodein-db-android:$kodeinDBVersion")
 }
 android {
     compileSdkVersion(29)

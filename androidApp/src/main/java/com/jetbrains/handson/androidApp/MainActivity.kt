@@ -11,6 +11,7 @@ import com.jetbrains.handson.kmm.shared.SpaceXSDK
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import androidx.core.view.isVisible
+import com.jetbrains.handson.kmm.shared.repository.RepositoryLocation
 import kotlinx.coroutines.cancel
 
 
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var progressBarView: FrameLayout
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
-    private val sdk = SpaceXSDK()
+    private val sdk by lazy { SpaceXSDK(RepositoryLocation(this)) }
 
     private val launchesRvAdapter = LaunchesRvAdapter(listOf())
 

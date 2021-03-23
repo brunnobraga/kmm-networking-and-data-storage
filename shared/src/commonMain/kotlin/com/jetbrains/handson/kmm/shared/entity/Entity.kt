@@ -2,6 +2,7 @@ package com.jetbrains.handson.kmm.shared.entity
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import org.kodein.db.model.orm.Metadata
 
 @Serializable
 data class RocketLaunch(
@@ -21,7 +22,10 @@ data class RocketLaunch(
     val launchSuccess: Boolean?,
     @SerialName("links")
     val links: Links
-)
+) : Metadata {
+    override val id: Any
+        get() = flightNumber
+}
 
 @Serializable
 data class Rocket(
