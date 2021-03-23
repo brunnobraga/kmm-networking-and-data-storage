@@ -13,7 +13,6 @@ version = "1.0-SNAPSHOT"
 repositories {
     gradlePluginPortal()
     google()
-    jcenter()
     mavenCentral()
 }
 kotlin {
@@ -34,9 +33,10 @@ kotlin {
 
     android()
 
-    val ktorVersion = "1.4.0"
-    val serializationVersion = "1.0.0-RC"
-    val coroutinesVersion = "1.3.9-native-mt"
+    val ktorVersion = "1.5.2"
+    val serializationVersion = "1.0.1"
+    val coroutinesVersion = "1.4.3-native-mt"
+    val kodeinDBVersion = "0.5.0-beta"
 
     sourceSets {
         val commonMain by getting {
@@ -45,6 +45,9 @@ kotlin {
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
                 implementation("io.ktor:ktor-client-serialization:$ktorVersion")
+                implementation("org.kodein.db:kodein-db:$kodeinDBVersion")
+                implementation("org.kodein.db:kodein-db-serializer-kotlinx:$kodeinDBVersion")
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.1.1")
             }
         }
         val commonTest by getting {
