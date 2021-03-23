@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.jetbrains.handson.kmm.shared.SpaceXSDK
-import com.jetbrains.handson.kmm.shared.cache.DatabaseDriverFactory
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import androidx.core.view.isVisible
@@ -22,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var progressBarView: FrameLayout
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
-    private val sdk = SpaceXSDK(DatabaseDriverFactory(this))
+    private val sdk = SpaceXSDK()
 
     private val launchesRvAdapter = LaunchesRvAdapter(listOf())
 
