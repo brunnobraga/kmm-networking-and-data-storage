@@ -4,26 +4,32 @@ import com.jetbrains.handson.kmm.shared.entity.RocketLaunch
 import org.kodein.db.*
 import org.kodein.db.impl.open
 import org.kodein.db.orm.kotlinx.KotlinxSerializer
+import org.kodein.memory.use
 
 class LaunchRepository(location: RepositoryLocation) {
     private val db: DB = DB.open(
         location.appDababaseFilePath(),
         KotlinxSerializer {
-            register(RocketLaunch::class, RocketLaunch.serializer())
+            +RocketLaunch.serializer()
         })
 
     fun getAllLaunches(): List<RocketLaunch> {
-        return db.find(RocketLaunch::class).all().asModelSequence().toList()
+        return db.find<RocketLaunch>().all().asModelSequence().toList()
     }
 
     fun clearLaunches() {
-        db.find(RocketLaunch::class).all().asKeySequence().toList().forEach {
-            db.delete(RocketLaunch::class, it)
+
+        db.find<RocketLaunch>().all().use {
+            db.execBatch {
+                deleteAll(it)
+            }
         }
     }
 
     fun createLaunches(launches: List<RocketLaunch>) {
-        launches.forEach { db.put(it) }
+        db.execBatch {
+            launches.forEach { put(it) }
+        }
     }
 }
 

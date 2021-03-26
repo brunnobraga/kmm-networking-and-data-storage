@@ -31,7 +31,13 @@ kotlin {
         }
     }
 
-    android()
+    android {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = "1.8"
+            }
+        }
+    }
 
     val ktorVersion = "1.5.2"
     val serializationVersion = "1.0.1"
@@ -88,6 +94,11 @@ android {
         getByName("release") {
             isMinifyEnabled = false
         }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 
